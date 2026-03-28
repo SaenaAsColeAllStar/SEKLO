@@ -1,0 +1,4 @@
+## 2024-05-18 - Prevent User Enumeration via Error Messages
+**Vulnerability:** The `CredentialsProvider` in NextAuth `authorize` function was returning specific error messages distinguishing between "User not found" and "Invalid password". This allows malicious actors to brute force user discovery and confirm existing accounts.
+**Learning:** Returning overly descriptive error messages during authentication processes compromises application security, even if the error seems harmless. It provides attackers an advantage when constructing targeted phishing attacks or credential stuffing.
+**Prevention:** Unify authentication error responses such as replacing both "User not found" and "Invalid password" with a generic "Invalid credentials" error message to prevent leaking account existence status.

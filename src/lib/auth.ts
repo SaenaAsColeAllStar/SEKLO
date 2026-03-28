@@ -27,13 +27,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         });
 
         if (!user || !user.passwordHash) {
-          throw new Error("User not found");
+          throw new Error("Invalid credentials");
         }
 
         const isPasswordValid = await bcrypt.compare(credentials.password as string, user.passwordHash);
 
         if (!isPasswordValid) {
-          throw new Error("Invalid password");
+          throw new Error("Invalid credentials");
         }
 
         return {
